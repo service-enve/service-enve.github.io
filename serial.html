@@ -5371,6 +5371,17 @@ Explore your accessibility options" class="INDcircle-btn" style="top: 100px; --i
 			text-align: center;
 		}
 		
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			/* display: none; <- Crashes Chrome on hover */
+			-webkit-appearance: none;
+			margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+		}
+
+		input[type=number] {
+			-moz-appearance:textfield; /* Firefox */
+		}
+			
 	 </style>
 <div id="spinner" class="spinner-container">
 	<img class="spinner" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif"/>
@@ -5384,7 +5395,7 @@ Explore your accessibility options" class="INDcircle-btn" style="top: 100px; --i
 <div id="serial-input" >
 	<form action="">
 	  <label for="fname">Serial Number:</label><br>
-	  <input type="text" id="serial" name="serial" value="" style="width:100%;border: 1px solid black;"><br>
+	  <input type="number" id="serial" name="serial" value="" style="width:100%;border: 1px solid black;"><br>
 	  <input type="submit" value="Submit" style="float:right;margin-top:1rem;background-color:#53ade9;color:white;padding: 10px 25px 10px 25px">
 	  <p id="found-text" style="float:left;margin-top:1rem;color:red;display:none">Serial number not found...</p>
 	</form>
@@ -5567,12 +5578,17 @@ Explore your accessibility options" class="INDcircle-btn" style="top: 100px; --i
 					badResult();
 				}
 			} else if (number.charAt(0) == '1') { // handlebar
+				//ENVE SES AR Road Handlebar 380mm
+				//01234567
+				//17713256
 				var size = "";
 				switch (parseInt(number.charAt(1), 10)) {
 					case 1: size = "400mm"; break;
 					case 2: size = "410mm"; break;
 					case 3: size = "420mm"; break;
 					case 4: size = "440mm"; break;
+					case 7: size = "380mm"; break;
+					case 8: size = "460mm"; break;
 					default: badResult();
 				}
 			
